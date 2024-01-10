@@ -23,35 +23,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final viewModel = context.watch<WeatherViewModel>();
     return Scaffold(
-
-      appBar: AppBar(
-        backgroundColor: Colors.grey,
-        leading: IconButton(
-          icon: const Icon(Icons.search),
-          onPressed: () {
-            setState(() {
-              isSearchVisible = !isSearchVisible;
-            });
-          },
-        ),
-        title: (isSearchVisible)
-            ? Padding(
-                padding: const EdgeInsets.all(8),
-                child: TextField(
-                  controller: _textController,
-                  decoration: const InputDecoration(hintText: '도시명을 입력하세요'),
-                  onChanged: (value) {
-                    viewModel.getInfo(value);
-                  },
-                ),
-              )
-            : Container(),
-        actions: const [
-          Icon(
-            Icons.menu,
-          )
-        ],
-      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -65,6 +36,42 @@ class _MainScreenState extends State<MainScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              AppBar(
+                backgroundColor: Colors.transparent,
+                leading: IconButton(
+                  icon: const Icon(Icons.search, color: Colors.white),
+                  onPressed: () {
+                    setState(() {
+                      isSearchVisible = !isSearchVisible;
+                    });
+                  },
+                ),
+                title: (isSearchVisible)
+                    ? Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: TextField(
+                          style: TextStyle(color: Colors.white),
+                          controller: _textController,
+                          decoration: const InputDecoration(
+                            hintText: '도시명을 입력하세요',
+                            hintStyle: TextStyle(color: Colors.white),
+                          ),
+                          onChanged: (value) {
+                            viewModel.getInfo(value);
+                          },
+                        ),
+                      )
+                    : Container(),
+                actions: const [
+                  Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 32,
+              ),
               Text(_textController.text,
                   style: const TextStyle(fontSize: 30, color: Colors.white)),
               Text(viewModel.timeDate,
@@ -78,7 +85,7 @@ class _MainScreenState extends State<MainScreen> {
                 children: [
                   const Icon(Icons.cloudy_snowing, color: Colors.white),
                   Text(
-                    viewModel.vmoCode.toString(),
+                    viewModel.weatherText,
                     style: const TextStyle(color: Colors.white),
                   ),
                 ],
@@ -92,25 +99,31 @@ class _MainScreenState extends State<MainScreen> {
                   Column(
                     children: [
                       const Text('Wind', style: TextStyle(color: Colors.white)),
-                      Text(viewModel.windSpeed.toString(),
-                          style: const TextStyle(fontSize: 20, color: Colors.white)),
-                      const Text('km/h'),
+                      Text('${viewModel.windSpeed.toString()} km/h',
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white)),
                     ],
                   ),
                   Column(
                     children: [
-                      const Text('Atm', style: TextStyle(color: Colors.white),),
-                      Text(viewModel.pressure.toString(),
-                          style: const TextStyle(fontSize: 20, color: Colors.white)),
-                      const Text('hPa'),
+                      const Text(
+                        'Atm',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text('${viewModel.pressure.toString()} hPa',
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white)),
                     ],
                   ),
                   Column(
                     children: [
-                      const Text('Humidity', style: TextStyle(color: Colors.white)),
-                      Text(viewModel.humidity.toString(),
-                          style: const TextStyle(fontSize: 20, color: Colors.white)),
-                      const Text('%'),
+                      const Text('Humidity',
+                          style: TextStyle(color: Colors.white)),
+                      Text(
+                        '${viewModel.humidity.toString()} %',
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.white),
+                      ),
                     ],
                   )
                 ],
