@@ -1,11 +1,11 @@
 class WeatherDto {
-  double? latitude;
-  double? longitude;
-  double? generationtimeMs;
-  int? utcOffsetSeconds;
+  num? latitude;
+  num? longitude;
+  num? generationtimeMs;
+  num? utcOffsetSeconds;
   String? timezone;
   String? timezoneAbbreviation;
-  int? elevation;
+  num? elevation;
   HourlyUnits? hourlyUnits;
   Hourly? hourly;
 
@@ -93,11 +93,11 @@ class HourlyUnits {
 
 class Hourly {
   List<String>? time;
-  List<double>? temperature2m;
-  List<int>? weathercode;
-  List<int>? relativehumidity2m;
-  List<double>? windspeed10m;
-  List<double>? pressureMsl;
+  List<num>? temperature2m;
+  List<num>? weathercode;
+  List<num>? relativehumidity2m;
+  List<num>? windspeed10m;
+  List<num>? pressureMsl;
 
   Hourly(
       {this.time,
@@ -109,11 +109,11 @@ class Hourly {
 
   Hourly.fromJson(Map<String, dynamic> json) {
     time = json['time'].cast<String>();
-    temperature2m = json['temperature_2m'].cast<double>();
-    weathercode = json['weathercode'].cast<int>();
-    relativehumidity2m = json['relativehumidity_2m'].cast<int>();
-    windspeed10m = json['windspeed_10m'].cast<double>();
-    pressureMsl = json['pressure_msl'].cast<double>();
+    temperature2m = json['temperature_2m'].cast<num>();
+    weathercode = json['weathercode'].cast<num>();
+    relativehumidity2m = json['relativehumidity_2m'].cast<num>();
+    windspeed10m = json['windspeed_10m'].cast<num>();
+    pressureMsl = json['pressure_msl'].cast<num>();
   }
 
   Map<String, dynamic> toJson() {

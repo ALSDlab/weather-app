@@ -8,7 +8,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
   final _api = WeatherApi();
 
   @override
-  Future<WeatherModel> getWeather(double lat, double lng) async {
+  Future<WeatherModel> getWeather(num lat, num lng) async {
     final dto = await _api.getWeatherInfo(lat, lng);
     return dto.hourly!.toModel();
   }
