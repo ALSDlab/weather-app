@@ -23,7 +23,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final viewModel = context.watch<WeatherViewModel>();
     return Scaffold(
+
       appBar: AppBar(
+        backgroundColor: Colors.grey,
         leading: IconButton(
           icon: const Icon(Icons.search),
           onPressed: () {
@@ -34,11 +36,11 @@ class _MainScreenState extends State<MainScreen> {
         ),
         title: (isSearchVisible)
             ? Padding(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: TextField(
                   controller: _textController,
-                  decoration: InputDecoration(hintText: '도시명을 입력하세요'),
-                  onChanged: (value){
+                  decoration: const InputDecoration(hintText: '도시명을 입력하세요'),
+                  onChanged: (value) {
                     viewModel.getInfo(value);
                   },
                 ),
@@ -50,29 +52,72 @@ class _MainScreenState extends State<MainScreen> {
           )
         ],
       ),
-      body:  Column(
-        children: [
-          Text(_textController.text),
-          Text(viewModel.timeDate, style: TextStyle(fontSize: 13)),
-          Text('${viewModel.temperature}℃'),
-          Row(
-            children: [
-              Icon(Icons.cloudy_snowing),
-              Text(viewModel.vmoCode.toString()),
-            ],
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                'https://images.unsplash.com/photo-1505322101000-19457cff32ba?q=80&w=1500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+            fit: BoxFit.cover,
           ),
-          Row(
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
+              Text(_textController.text,
+                  style: const TextStyle(fontSize: 30, color: Colors.white)),
+              Text(viewModel.timeDate,
+                  style: const TextStyle(fontSize: 13, color: Colors.white)),
+              const SizedBox(height: 100),
+              Text(
+                '${viewModel.temperature}℃',
+                style: const TextStyle(fontSize: 50, color: Colors.white),
+              ),
+              Row(
                 children: [
-                  Text('Wind'),
-                  Text(viewModel.windSpeed.toString(), style: TextStyle(fontSize: 20)),
-                  Text('km/h'),
+                  const Icon(Icons.cloudy_snowing, color: Colors.white),
+                  Text(
+                    viewModel.vmoCode.toString(),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 64,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      const Text('Wind', style: TextStyle(color: Colors.white)),
+                      Text(viewModel.windSpeed.toString(),
+                          style: const TextStyle(fontSize: 20, color: Colors.white)),
+                      const Text('km/h'),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      const Text('Atm', style: TextStyle(color: Colors.white),),
+                      Text(viewModel.pressure.toString(),
+                          style: const TextStyle(fontSize: 20, color: Colors.white)),
+                      const Text('hPa'),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      const Text('Humidity', style: TextStyle(color: Colors.white)),
+                      Text(viewModel.humidity.toString(),
+                          style: const TextStyle(fontSize: 20, color: Colors.white)),
+                      const Text('%'),
+                    ],
+                  )
                 ],
               )
             ],
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
