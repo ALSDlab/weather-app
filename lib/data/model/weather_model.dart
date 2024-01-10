@@ -1,10 +1,10 @@
 class WeatherModel{
 List<String> times;
-List<double> temp;
-List<int> wmoCode;
-List<int> humidity;
-List<double> windSpeed;
-List<double> pressure;
+List<num> temp;
+List<num> wmoCode;
+List<num> humidity;
+List<num> windSpeed;
+List<num> pressure;
 
 //<editor-fold desc="Data Methods">
   WeatherModel({
@@ -44,11 +44,11 @@ List<double> pressure;
 
   WeatherModel copyWith({
     List<String>? times,
-    List<double>? temp,
-    List<int>? wmoCode,
-    List<int>? humidity,
-    List<double>? windSpeed,
-    List<double>? pressure,
+    List<num>? temp,
+    List<num>? wmoCode,
+    List<num>? humidity,
+    List<num>? windSpeed,
+    List<num>? pressure,
   }) {
     return WeatherModel(
       times: times ?? this.times,
@@ -60,7 +60,7 @@ List<double> pressure;
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'times': times,
       'temp': temp,
@@ -71,14 +71,14 @@ List<double> pressure;
     };
   }
 
-  factory WeatherModel.fromMap(Map<String, dynamic> map) {
+  factory WeatherModel.fromJson(Map<String, dynamic> map) {
     return WeatherModel(
       times: map['times'] as List<String>,
-      temp: map['temp'] as List<double>,
-      wmoCode: map['wmoCode'] as List<int>,
-      humidity: map['humidity'] as List<int>,
-      windSpeed: map['windSpeed'] as List<double>,
-      pressure: map['pressure'] as List<double>,
+      temp: map['temp'] as List<num>,
+      wmoCode: map['wmoCode'] as List<num>,
+      humidity: map['humidity'] as List<num>,
+      windSpeed: map['windSpeed'] as List<num>,
+      pressure: map['pressure'] as List<num>,
     );
   }
 
