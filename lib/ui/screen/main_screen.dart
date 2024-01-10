@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/ui/screen/weather_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
+
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -26,18 +28,18 @@ class _MainScreenState extends State<MainScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(
-              viewModel.backgroundImg,
-            ),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken)
-          ),
+              image: NetworkImage(
+                viewModel.backgroundImg,
+              ),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.3), BlendMode.darken)),
         ),
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               AppBar(
                 backgroundColor: Colors.transparent,
                 leading: IconButton(
@@ -52,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
                     ? Padding(
                         padding: const EdgeInsets.all(8),
                         child: TextField(
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                           controller: _textController,
                           decoration: const InputDecoration(
                             hintText: '도시명을 입력하세요',
@@ -71,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
               Expanded(
@@ -99,7 +101,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.sunny, color: Colors.white),
+                        viewModel.weatherIcon,
                         Text(
                           viewModel.weatherText,
                           style: const TextStyle(color: Colors.white),
@@ -125,6 +127,18 @@ class _MainScreenState extends State<MainScreen> {
                           Text('${viewModel.windSpeed.toString()} km/h',
                               style: const TextStyle(
                                   fontSize: 20, color: Colors.white)),
+                          SimpleAnimationProgressBar(
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10)),
+                            height: 3,
+                            width: 60,
+                            backgroundColor: Colors.grey,
+                            foregrondColor: Colors.green,
+                            ratio: viewModel.windSpeed / 100,
+                            direction: Axis.horizontal,
+                            curve: Curves.fastLinearToSlowEaseIn,
+                            duration: Duration(seconds: 3),
+                          ),
                         ],
                       ),
                       Column(
@@ -136,6 +150,18 @@ class _MainScreenState extends State<MainScreen> {
                           Text('${viewModel.pressure.toString()} hPa',
                               style: const TextStyle(
                                   fontSize: 20, color: Colors.white)),
+                          SimpleAnimationProgressBar(
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10)),
+                            height: 3,
+                            width: 60,
+                            backgroundColor: Colors.grey,
+                            foregrondColor: Colors.green,
+                            ratio: (viewModel.diffPressure / (1089.1 - 951.5)),
+                            direction: Axis.horizontal,
+                            curve: Curves.fastLinearToSlowEaseIn,
+                            duration: Duration(seconds: 3),
+                          ),
                         ],
                       ),
                       Column(
@@ -146,6 +172,18 @@ class _MainScreenState extends State<MainScreen> {
                             '${viewModel.humidity.toString()} %',
                             style: const TextStyle(
                                 fontSize: 20, color: Colors.white),
+                          ),
+                          SimpleAnimationProgressBar(
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10)),
+                            height: 3,
+                            width: 60,
+                            backgroundColor: Colors.grey,
+                            foregrondColor: Colors.green,
+                            ratio: viewModel.humidity / 100,
+                            direction: Axis.horizontal,
+                            curve: Curves.fastLinearToSlowEaseIn,
+                            duration: Duration(seconds: 3),
                           ),
                         ],
                       )
