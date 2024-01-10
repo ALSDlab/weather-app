@@ -27,8 +27,10 @@ class _MainScreenState extends State<MainScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-                viewModel.backgroundImg),
+              viewModel.backgroundImg,
+            ),
             fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken)
           ),
         ),
         child: Padding(
@@ -77,9 +79,11 @@ class _MainScreenState extends State<MainScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(_textController.text,
-                        style: const TextStyle(fontSize: 30, color: Colors.white)),
+                        style:
+                            const TextStyle(fontSize: 30, color: Colors.white)),
                     Text(viewModel.timeDate,
-                        style: const TextStyle(fontSize: 13, color: Colors.white)),
+                        style:
+                            const TextStyle(fontSize: 13, color: Colors.white)),
                   ],
                 ),
               ),
@@ -116,7 +120,8 @@ class _MainScreenState extends State<MainScreen> {
                     children: [
                       Column(
                         children: [
-                          const Text('Wind', style: TextStyle(color: Colors.white)),
+                          const Text('Wind',
+                              style: TextStyle(color: Colors.white)),
                           Text('${viewModel.windSpeed.toString()} km/h',
                               style: const TextStyle(
                                   fontSize: 20, color: Colors.white)),
@@ -139,8 +144,8 @@ class _MainScreenState extends State<MainScreen> {
                               style: TextStyle(color: Colors.white)),
                           Text(
                             '${viewModel.humidity.toString()} %',
-                            style:
-                                const TextStyle(fontSize: 20, color: Colors.white),
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
                           ),
                         ],
                       )
