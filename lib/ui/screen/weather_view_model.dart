@@ -12,7 +12,7 @@ class WeatherViewModel extends ChangeNotifier {
   num windSpeed = 0.0;
   num pressure = 0.0;
   num diffPressure = 0.0;
-  num vmoCode = 0;
+  num wmoCode = 0;
   List<Location> location = [];
   String weatherText = '';
   String backgroundImg =
@@ -40,8 +40,8 @@ class WeatherViewModel extends ChangeNotifier {
     windSpeed = result.windSpeed[nowHour];
     pressure = result.pressure[nowHour];
     diffPressure = pressure - 951.5;
-    vmoCode = result.wmoCode[nowHour];
-    weatherCodeDistribution(vmoCode);
+    wmoCode = result.wmoCode[nowHour];
+    weatherCodeDistribution(wmoCode);
 
     notifyListeners();
   }

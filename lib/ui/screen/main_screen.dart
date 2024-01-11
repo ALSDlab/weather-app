@@ -129,7 +129,7 @@ class _MainScreenState extends State<MainScreen> {
                                   fontSize: 20, color: Colors.white)),
                           SimpleAnimationProgressBar(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(10)),
+                            const BorderRadius.all(Radius.circular(10)),
                             height: 3,
                             width: 60,
                             backgroundColor: Colors.grey,
@@ -137,7 +137,7 @@ class _MainScreenState extends State<MainScreen> {
                             ratio: viewModel.windSpeed / 100,
                             direction: Axis.horizontal,
                             curve: Curves.fastLinearToSlowEaseIn,
-                            duration: Duration(seconds: 3),
+                            duration: const Duration(seconds: 3),
                           ),
                         ],
                       ),
@@ -152,7 +152,7 @@ class _MainScreenState extends State<MainScreen> {
                                   fontSize: 20, color: Colors.white)),
                           SimpleAnimationProgressBar(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(10)),
+                            const BorderRadius.all(Radius.circular(10)),
                             height: 3,
                             width: 60,
                             backgroundColor: Colors.grey,
@@ -160,7 +160,7 @@ class _MainScreenState extends State<MainScreen> {
                             ratio: (viewModel.diffPressure / (1089.1 - 951.5)),
                             direction: Axis.horizontal,
                             curve: Curves.fastLinearToSlowEaseIn,
-                            duration: Duration(seconds: 3),
+                            duration: const Duration(seconds: 3),
                           ),
                         ],
                       ),
@@ -175,7 +175,7 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                           SimpleAnimationProgressBar(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(10)),
+                            const BorderRadius.all(Radius.circular(10)),
                             height: 3,
                             width: 60,
                             backgroundColor: Colors.grey,
@@ -183,7 +183,7 @@ class _MainScreenState extends State<MainScreen> {
                             ratio: viewModel.humidity / 100,
                             direction: Axis.horizontal,
                             curve: Curves.fastLinearToSlowEaseIn,
-                            duration: Duration(seconds: 3),
+                            duration: const Duration(seconds: 3),
                           ),
                         ],
                       )
